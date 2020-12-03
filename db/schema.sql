@@ -3,13 +3,13 @@ CREATE DATABASE employee_trackerDB;
 
 USE employee_trackerDB;
 
-CREATE TABLE department (
+CREATE TABLE departments (
     id INT AUTO_INCREMENT,
     name VARCHAR(30),
     PRIMARY KEY(id)
 );
 
-CREATE TABLE role (
+CREATE TABLE roles (
     id INT AUTO_INCREMENT,
     title VARCHAR(30),
     salary DECIMAL(10,2),
@@ -17,7 +17,7 @@ CREATE TABLE role (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE employee (
+CREATE TABLE employees (
     id INT AUTO_INCREMENT,
     first_name VARCHAR(30),
     last_name VARCHAR(30),
@@ -26,5 +26,5 @@ CREATE TABLE employee (
     PRIMARY KEY(id)
 )
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
+INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES ("Shani", "Black", 123, 1)
