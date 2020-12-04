@@ -4,12 +4,21 @@ require("console.table");
 
 const db = require("./db/store")
 
+// Starting inital prompt //
 async function loadMainPrompts() {
     const {choice} = await prompt({
         type: 'list',
         message: 'What would you like to do?',
         name: 'choice',
-        choices: ['View all employees', 'View all departments', 'View all roles', 'Add new employee', 'Add new department', 'Add new role', 'Update employee roles']
+        choices: [
+            'View all employees',
+            'View all departments',
+            'View all roles',
+            'Add new employee',
+            'Add new department',
+            'Add new role',
+            'Update employee roles'
+        ]
     });
     switch (choice) {
         case 'View all employees':
@@ -38,34 +47,37 @@ async function loadMainPrompts() {
     }
 }
 
+//// View All Employees ////
 // async function to be able to await
 async function viewAllEmployees() { 
     // waits for findAllEmployees action to run before looking at next line of code
     let allEmployees = await db.findAllEmployees();
-    if (err) throw err;
     console.table(allEmployees);
 
     loadMainPrompts();
 }
+
+//// View All Departments ////
 async function viewAllDepartments() { 
     let allDepartments = await db.findAllDepartments();
-    if (err) throw err;
     console.table(allDepartments);
 
     loadMainPrompts();
 
 }
+
+//// View All Roles ////
 async function viewAllRoles() { 
     let allRoles = await db.findAllRoles();
-    if (err) throw err;
     console.table(allRoles);
 
     loadMainPrompts();
 
 }
+
+//// Add New Employee ////
 async function addNewEmployee() { 
-    // if (err) throw err;
-    let {choice} = await prompt([
+    let response = await prompt([
         {
             type: 'input',
             message: 'What is the employee first name?',
@@ -78,15 +90,15 @@ async function addNewEmployee() {
         },
         {
             type: 'input',
-            message: 'What is the employee role id?',
-            name: 'roleID'
+            message: 'What is their role?',
+            name: 'role'
         },
         {
             type: 'input',
-            message: 'What is the manager role id?',
-            name: 'managerID'
+            message: 'Who is their manager?',
+            name: 'manager'
         }], 
-        await db.addEmployee()
+        await db.addEmployee(response)
         
         )   
     loadMainPrompts();

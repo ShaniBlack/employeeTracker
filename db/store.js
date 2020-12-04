@@ -13,12 +13,12 @@ class Store{
     findAllRoles() {
         return this.connection.query("SELECT * from role")
     }
-    addEmployee(choice) {
+    addEmployee(response) {
         return this.connection.query("INSERT INTO employees SET ?", {
-            first_name: choice.firstName,
-            last_name: choice.lastName,
-            role_id: choice.roleID, 
-            manager_id: choice.managerID,
+            first_name: response.firstName,
+            last_name: response.lastName,
+            role_id: response.roleID, 
+            manager_id: response.managerID,
         });
     }
 
