@@ -5,13 +5,13 @@ class Store{
         this.connection = connection
     }
     findAllEmployees() {
-        return this.connection.query("SELECT * FROM employee")
+        return this.connection.query("SELECT * FROM employees")
     }
     findAllDepartments() {
         return this.connection.query("SELECT * FROM departments")
     }
     findAllRoles() {
-        return this.connection.query("SELECT * from role")
+        return this.connection.query("SELECT * from roles")
     }
     addEmployee(response) {
         return this.connection.query("INSERT INTO employees SET ?", {
