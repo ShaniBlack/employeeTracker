@@ -3,6 +3,7 @@ const { addEmployee } = require("./db/store");
 require("console.table");
 
 const db = require("./db/store")
+loadMainPrompts()
 
 // Starting inital prompt //
 async function loadMainPrompts() {
@@ -77,7 +78,7 @@ async function viewAllRoles() {
 
 //// Add New Employee ////
 async function addNewEmployee() { 
-    const {choice} = await prompt([
+    const choice = await prompt([
         {
             type: 'input',
             message: 'What is the employee first name?',
@@ -106,7 +107,7 @@ async function addNewEmployee() {
 }
 //// Add new role //// 
 async function addNewRole() { 
-    const {choice} = await prompt([
+    const choice = await prompt([
         {
             type: 'input',
             message: 'What is the the title of the role?',
@@ -140,6 +141,7 @@ async function addNewDepartment() {
     await db.addDepartment(choice);
 loadMainPrompts()
 }
+//// Update Employee Role ////
 async function updateEmployeeRole() {
     const {choice} = await prompt([
         {
