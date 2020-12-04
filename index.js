@@ -77,7 +77,7 @@ async function viewAllRoles() {
 
 //// Add New Employee ////
 async function addNewEmployee() { 
-    let response = await prompt([
+    const {choice} = await prompt([
         {
             type: 'input',
             message: 'What is the employee first name?',
@@ -90,22 +90,52 @@ async function addNewEmployee() {
         },
         {
             type: 'input',
-            message: 'What is their role?',
-            name: 'role'
+            message: 'What is their role ID number?',
+            name: 'roleID'
         },
         {
             type: 'input',
-            message: 'Who is their manager?',
-            name: 'manager'
+            message: 'What is their manager ID number?',
+            name: 'managerID'
         }], 
-        await db.addEmployee(response)
-        
         )   
+        await db.addEmployee(choice);
+        
     loadMainPrompts();
 
 }
+async function addNewRole() { 
+    const {choice} = await prompt([
+        {
+            type: 'input',
+            message: 'What is the the title of the role?',
+            name: 'roleTitle'
+        },
+        {
+            type: 'input',
+            message: 'What is the salary for this role?',
+            name: 'salaryAmt'
+        },
+        {
+            type: 'input',
+            message: 'What is their department ID for the role?',
+            name: 'deptID'
+        }], 
+        )   
+        await db.addRole(choice);
 
+    loadMainPrompts();
 
+}
+async function addNewDepartment() { 
+    const {choice} = await prompt([
+        {
+            type: 'input',
+            message: 'What is the the name of the department?',
+            name: 'deptName'
+        }],
+    )
+    await db.addDepartment(choice);
 loadMainPrompts()
 
 // functions
